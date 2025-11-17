@@ -1,7 +1,7 @@
 # Official PHP image suitable for Laravel
 FROM php:8.2-fpm
 
-# Install system dependencies and PHP extensions
+# Install system dependencies and PHP extensions (including GD)
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -10,12 +10,16 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libonig-dev \
     libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip gd
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
+# Copy project files into the container
 COPY . .
 
 # Install Composer
