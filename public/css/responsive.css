@@ -1,0 +1,121 @@
+/* 📱 Responsive Design - Improve Slider & Discount Section */
+
+/* Tablet view */
+@media (max-width: 992px) {
+  /* Header Adjust */
+  .user_option {
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  /* Hero Section */
+  .slider_section .detail-box {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .slider_section .detail-box h1 {
+    font-size: 2.3rem;
+    line-height: 1.4;
+  }
+
+  .slider_section .detail-box p {
+    font-size: 0.95rem;
+  }
+
+  .slider_section .img-box img {
+    width: 260px;
+  }
+
+  /* Promotion Section */
+  .discount_section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .discount_section .detail-box {
+    margin-bottom: 25px;
+  }
+
+  .discount_section img {
+    width: 250px;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  /* Hero Section */
+  .slider_section {
+    padding: 20px;
+  }
+
+  .slider_section .row {
+    flex-direction: column-reverse;
+  }
+
+  .slider_section .detail-box h1 {
+    font-size: 1.8rem;
+  }
+
+  .slider_section .detail-box p {
+    font-size: 0.9rem;
+  }
+
+  .slider_section .img-box {
+    margin-bottom: 30px;
+  }
+
+  .slider_section .img-box img {
+    width: 220px;
+  }
+
+  .slider_section .detail-box a {
+    font-size: 0.85rem;
+    padding: 8px 20px;
+  }
+
+  /* Promotion Section */
+  .discount_section {
+    padding: 30px 15px;
+    margin: 25px 10px;
+  }
+
+  .discount_section .detail-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .discount_section .detail-box h3 {
+    font-size: 1.2rem;
+  }
+
+  .discount_section img {
+    width: 200px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .slider_section .detail-box h1 {
+    font-size: 1.5rem;
+  }
+
+  .slider_section .detail-box p {
+    font-size: 0.85rem;
+  }
+
+  .discount_section .detail-box h2 {
+    font-size: 1.3rem;
+  }
+
+  .discount_section .detail-box p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Large desktop screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
