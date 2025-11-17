@@ -1,7 +1,7 @@
-# Use official PHP image with extensions for Laravel
+# Official PHP image suitable for Laravel
 FROM php:8.2-fpm
 
-# Install system dependencies
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -15,21 +15,22 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
+# Copy project files into the container
 COPY . .
 
-# Install composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Install Composer (single-stage install)
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
 
-# Install dependencies
+# Install PHP dependencies for Laravel
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Optimize autoload
-RUN composer dump-autoload --optimize
-
-# Permissions
+# Set correct permissions for storage and cache
 RUN chmod -R 777 storage bootstrap/cache
 
+# Expose port 80
 EXPOSE 80
 
+# Start PHP-FPM
 CMD ["php-fpm"]
