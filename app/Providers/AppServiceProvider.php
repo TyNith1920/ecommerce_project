@@ -26,12 +26,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        // បើកំពុងរត់ command ក្នុង console (artisan) -> កុំ query DB
+        // 👉 ពេល run artisan / composer (runningInConsole) កុំ query DB ទេ
         if (app()->runningInConsole()) {
             return;
         }
 
-        // ប៉ុន្តែបើចង់ប្រើក្នុង web ទេ​
         try {
             if (Schema::hasTable('users')) {
                 view()->share('user', User::count());
@@ -49,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
                 );
             }
         } catch (\Exception $e) {
-            // អាច log បន្តិចក៏បាន ប៉ុន្តែមិនបាច់
+            // ignore error ពេល DB មិនទាន់ ready
             // \Log::error($e->getMessage());
         }
     }
